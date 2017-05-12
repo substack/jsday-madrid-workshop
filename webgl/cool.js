@@ -5,6 +5,9 @@ var teapot = require('teapot')
 var bunny = require('bunny')
 var glsl = require('glslify')
 var anormals = require('angle-normals')
+var webaudio = require('webaudio')
+var b = webaudio(require('./song.js'))
+b.play()
 
 function createBunny () {
   var mesh = bunny
