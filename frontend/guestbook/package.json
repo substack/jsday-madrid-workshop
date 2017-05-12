@@ -1,0 +1,5 @@
+{
+  "scripts": {
+    "dev": "watchify main.js -o public/bundle.js -dv"
+  }
+}
