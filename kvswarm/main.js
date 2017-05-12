@@ -4,6 +4,14 @@ var level = require('level-browserify')
 var db = level('¡WOW!')
 var hyperlog = require('hyperlog')
 var sub = require('subleveldown')
+var wswarm = require('webrtc-swarm')
+var signalhub = require('signalhub')
+
+var swarm = wswarm(signalhub('kvswarm', ['http://localhost:5009/']))
+swarm.on('peer', function (peer, id) {
+  console.log('PEER',id)
+  peer.pipe(log.replicate({ live: true })).pipe(peer)
+})
 
 var log = hyperlog(sub(db,'log'), { valueEncoding: 'json' })
 var hyperkv = require('hyperkv')
@@ -28,9 +36,6 @@ function update () {
       <button type="submit">load key</button>
     </form>
     <h1>sync</h1>
-    <form onsubmit=${sync}>
-      <button>SYNC</button>
-    </form>
   </div>`)
   function setValue (ev) {
     ev.preventDefault()
