@@ -1,0 +1,10 @@
+{
+  "browserify": {
+    "transform": [
+      "glslify"
+    ]
+  },
+  "dependencies": {
+    "baudio": "^2.1.2"
+  }
+}
